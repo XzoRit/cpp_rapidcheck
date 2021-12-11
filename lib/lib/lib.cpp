@@ -44,5 +44,5 @@ ymd from_str(const std::string_view s)
 
     return {y, m, d};
 }
-} // namespace v1
-} // namespace xzr::lib
+}
+}

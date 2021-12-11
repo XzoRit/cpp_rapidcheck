@@ -28,5 +28,5 @@ std::string to_str(const ymd& a);
 ///
 /// \snippet lib/lib.test.cpp ymd_str_conv
 ymd from_str(const std::string_view s);
-} // namespace v1
-} // namespace xzr::lib
+}
+}

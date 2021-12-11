@@ -29,13 +29,13 @@ void showValue(const ymd& a, std::ostream& o)
 {
     o << a.y << '.' << a.m << '.' << a.d;
 }
-} // namespace xzr::lib
+}
 namespace
 {
 const Gen<int> rand_year{inRange(-9'999, 10'000).as("year")};
 const Gen<int> rand_month{inRange(1, 12).as("month")};
 const Gen<int> rand_day{inRange(1, 31).as("day")};
-} // namespace
+}
 namespace rc
 {
 template <>
@@ -46,10 +46,7 @@ struct Arbitrary<xzr::lib::ymd>
         return construct<xzr::lib::ymd>(::rand_year, ::rand_month, ::rand_day);
     }
 };
-} // namespace rc
-namespace
-{
-} // namespace
+}
 namespace
 {
 BOOST_AUTO_TEST_SUITE(lib_tests)
@@ -85,4 +82,4 @@ RC_BOOST_PROP(ymd_from_string, ())
 }
 
 BOOST_AUTO_TEST_SUITE_END()
-} // namespace
+}
