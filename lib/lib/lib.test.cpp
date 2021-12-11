@@ -66,11 +66,9 @@ RC_BOOST_PROP(adding_zero_does_nothing, (int a))
     RC_ASSERT(res_a == a);
 }
 
-RC_BOOST_PROP(ymd_from_string, ())
+RC_BOOST_PROP(ymd_from_string, (ymd rand_ymd))
 {
     //! [ymd_str_conv]
-    const auto rand_ymd{*arbitrary<ymd>()};
-
     const ymd actual{from_str(to_str(rand_ymd))};
     RC_ASSERT(rand_ymd == actual);
     //! [ymd_str_conv]
