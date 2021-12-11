@@ -1,7 +1,3 @@
-#include "rapidcheck/Gen.h"
-#include "rapidcheck/gen/Arbitrary.h"
-#include "rapidcheck/gen/Build.h"
-#include "rapidcheck/gen/Numeric.h"
 #include <lib/lib.hpp>
 
 #include <rapidcheck.h>
@@ -10,7 +6,6 @@
 // needs to be included after any boost test headers
 #include <rapidcheck/boost_test.h>
 
-#include <charconv>
 #include <ostream>
 #include <string>
 
