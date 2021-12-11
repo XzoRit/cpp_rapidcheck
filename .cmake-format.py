@@ -4,9 +4,6 @@ line_width = 80
 # How many spaces to tab for indent
 tab_size = 2
 
-# If arglists are longer than this, break them always
-max_subargs_per_line = 0
-
 # If true, separate flow control names from their parentheses with a space
 separate_ctrl_name_with_space = False
 
@@ -49,9 +46,6 @@ additional_commands = {
 
 # A list of command names which should always be wrapped
 always_wrap = []
-
-# Specify the order of wrapping algorithms during successive reflow attempts
-algorithm_order = [0, 1, 2, 3, 4]
 
 # If true, the argument lists which are known to be sortable will be sorted
 # lexicographicall

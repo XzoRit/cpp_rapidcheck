@@ -1,7 +1,3 @@
-add_subdirectory(
-  boost
-)
+add_subdirectory(boost)
 
-add_subdirectory(
-  rapidcheck
-)
+add_subdirectory(rapidcheck)
