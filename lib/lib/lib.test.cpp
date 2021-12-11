@@ -10,7 +10,6 @@
 #include <string>
 
 using ::rc::Gen;
-using ::rc::gen::arbitrary;
 using ::rc::gen::construct;
 using ::rc::gen::inRange;
 using ::xzr::lib::add;
@@ -28,8 +27,8 @@ void showValue(const ymd& a, std::ostream& o)
 namespace
 {
 const Gen<int> rand_year{inRange(-9'999, 10'000).as("year")};
-const Gen<int> rand_month{inRange(1, 12).as("month")};
-const Gen<int> rand_day{inRange(1, 31).as("day")};
+const Gen<int> rand_month{inRange(1, 13).as("month")};
+const Gen<int> rand_day{inRange(1, 32).as("day")};
 }
 namespace rc
 {
