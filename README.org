@@ -2,7 +2,6 @@
 ** build files
 Boost.Build and CMake build files are available.
 *** Boost.Build
-mkdir build_boost
 **** build
 - b2
 - b2 -q toolset=gcc-10 lib//lib
