@@ -25,6 +25,12 @@ target_include_directories(
     ${inc_dir}
 )
 
+target_link_libraries(
+  lib
+  PRIVATE
+    Boost::boost
+)
+
 add_library(
   lib::lib
   ALIAS
@@ -46,6 +52,8 @@ target_link_libraries(
   lib_test
   PRIVATE
     lib::lib
+    rapidcheck
+    rapidcheck_boost_test
     Boost::unit_test_framework
 )
 

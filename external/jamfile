@@ -1,0 +1,27 @@
+constant root_dir
+    : ./rapidcheck
+    ;
+
+constant inc_dir
+    : $(root_dir)/include
+    ;
+
+constant inc_boost_test_dir
+    : $(root_dir)/extras/boost_test/include
+    ;
+
+constant src_dir
+    : $(root_dir)/src
+    ;
+
+lib rapidcheck
+    : [ glob $(src_dir)/*.cpp ]
+      [ glob $(src_dir)/detail/*.cpp ]
+      [ glob $(src_dir)/gen/*.cpp ]
+      [ glob $(src_dir)/gen/detail/*.cpp ]
+    : <include>$(inc_dir)
+      <include>$(inc_boost_test_dir)
+    :
+    : <include>$(inc_dir)
+      <include>$(inc_boost_test_dir)
+    ;

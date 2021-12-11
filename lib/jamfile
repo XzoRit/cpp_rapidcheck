@@ -26,7 +26,7 @@ constant sources
 lib lib
     : $(sources)
     : <include>$(inc_dir)
-    :
+    : <use>/boost//headers
     : <include>$(inc_dir)
     ;
 
@@ -35,5 +35,6 @@ run $(test_sources)
     :
     : <library>lib
       <library>/boost//unit_test_framework
+      <library>/external//rapidcheck
     : test
     ;

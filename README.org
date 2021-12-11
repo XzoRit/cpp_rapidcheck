@@ -12,7 +12,7 @@ mkdir build_boost
 - b2 -q toolset=gcc-10 app//run
 *** CMake
 **** configure
-cmake -B ./build -S ./ -DCMAKE_C_COMPILER=gcc-10 -DCMAKE_CXX_COMPILER=g++-10 -DCMAKE_CXX_STANDARD=20
+cmake -B ./build -S ./ -DRC_ENABLE_BOOST_TEST=ON -DCMAKE_CXX_STANDARD=20
 **** build
 cmake --build ./build --target all
 **** execute test and app with ctest
