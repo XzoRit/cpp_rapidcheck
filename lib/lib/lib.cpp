@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include <charconv>
+#include <string>
 #include <utility>
 
 using ::boost::pfr::eq_fields;

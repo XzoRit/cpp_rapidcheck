@@ -14,9 +14,7 @@ using ::xzr::lib::add;
 using ::xzr::lib::from_str;
 using ::xzr::lib::to_str;
 using ::xzr::lib::ymd;
-using ::xzr::lib::test::rand_day_str;
-using ::xzr::lib::test::rand_month_str;
-using ::xzr::lib::test::rand_year_str;
+using ::xzr::lib::test::rand_ymd_str;
 
 namespace
 {
@@ -51,8 +49,8 @@ RC_BOOST_PROP(ymd_from_string, (ymd rand_ymd))
 
 RC_BOOST_PROP(ymd_to_string, ())
 {
-    std::string rand_ymd_str{*rand_year_str + '.' + *rand_month_str + '.' + *rand_day_str};
-    RC_ASSERT(rand_ymd_str == to_str(from_str(rand_ymd_str)));
+    const std::string s{*rand_ymd_str()};
+    RC_ASSERT(s == to_str(from_str(s)));
 }
 
 BOOST_AUTO_TEST_SUITE_END()
