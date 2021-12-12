@@ -7,6 +7,7 @@ exe exe
       /lib//lib
       /lib//test_support
       /boost//program_options
+      /external//rapidcheck
     ;
 
 import testing
