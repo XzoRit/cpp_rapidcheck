@@ -1,4 +1,5 @@
 #include <lib/lib.hpp>
+#include <lib/lib_test_support.hpp>
 
 #include <rapidcheck.h>
 
@@ -9,38 +10,14 @@
 #include <ostream>
 #include <string>
 
-using ::rc::Gen;
-using ::rc::gen::construct;
-using ::rc::gen::inRange;
 using ::xzr::lib::add;
 using ::xzr::lib::from_str;
 using ::xzr::lib::to_str;
 using ::xzr::lib::ymd;
+using ::xzr::lib::test::rand_day_str;
+using ::xzr::lib::test::rand_month_str;
+using ::xzr::lib::test::rand_year_str;
 
-namespace xzr::lib
-{
-void showValue(const ymd& a, std::ostream& o)
-{
-    o << a.y << '.' << a.m << '.' << a.d;
-}
-}
-namespace
-{
-const Gen<int> rand_year{inRange(-9'999, 10'000).as("year")};
-const Gen<int> rand_month{inRange(1, 13).as("month")};
-const Gen<int> rand_day{inRange(1, 32).as("day")};
-}
-namespace rc
-{
-template <>
-struct Arbitrary<xzr::lib::ymd>
-{
-    static Gen<xzr::lib::ymd> arbitrary()
-    {
-        return construct<xzr::lib::ymd>(::rand_year, ::rand_month, ::rand_day);
-    }
-};
-}
 namespace
 {
 BOOST_AUTO_TEST_SUITE(lib_tests)
@@ -68,9 +45,14 @@ RC_BOOST_PROP(adding_zero_does_nothing, (int a))
 RC_BOOST_PROP(ymd_from_string, (ymd rand_ymd))
 {
     //! [ymd_str_conv]
-    const ymd actual{from_str(to_str(rand_ymd))};
-    RC_ASSERT(rand_ymd == actual);
+    RC_ASSERT(rand_ymd == from_str(to_str(rand_ymd)));
     //! [ymd_str_conv]
+}
+
+RC_BOOST_PROP(ymd_to_string, ())
+{
+    std::string rand_ymd_str{*rand_year_str + '.' + *rand_month_str + '.' + *rand_day_str};
+    RC_ASSERT(rand_ymd_str == to_str(from_str(rand_ymd_str)));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

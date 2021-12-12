@@ -19,14 +19,25 @@ constant test_sources
     : [ glob $(src_dir)/*.test.cpp ]
     ;
 
-constant sources
-    : [ glob $(src_dir)/*.cpp : $(test_sources) ]
+constant lib_sources
+    : $(src_dir)/lib.cpp
+    ;
+
+constant test_support_sources
+    : $(src_dir)/lib_test_support.cpp
     ;
 
 lib lib
-    : $(sources)
+    : $(lib_sources)
     : <include>$(inc_dir)
     : <use>/boost//headers
+    : <include>$(inc_dir)
+    ;
+
+lib test_support
+    : $(test_support_sources)
+    : <include>$(inc_dir)
+    : <library>/external//rapidcheck
     : <include>$(inc_dir)
     ;
 
@@ -34,6 +45,7 @@ run $(test_sources)
     : --color_output=false
     :
     : <library>lib
+      <library>test_support
       <library>/boost//unit_test_framework
       <library>/external//rapidcheck
     : test

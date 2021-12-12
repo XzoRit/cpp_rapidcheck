@@ -5,6 +5,7 @@ constant sources
 exe exe
     : $(sources)
       /lib//lib
+      /lib//test_support
       /boost//program_options
     ;
 
