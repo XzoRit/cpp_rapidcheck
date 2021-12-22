@@ -1,15 +1,21 @@
 #include <lib/lib_test_support.hpp>
+
 #include <string>
 
 using ::rc::Gen;
 using ::rc::gen::inRange;
 using ::rc::gen::map;
+using ::xzr::lib::to_str;
 
 namespace xzr::lib
 {
 void showValue(const ymd& a, std::ostream& o)
 {
-    o << a.y << '.' << a.m << '.' << a.d;
+    o << to_str(a).s;
+}
+void showValue(const ymd_str& a, std::ostream& o)
+{
+    o << '"' << a.s << '"';
 }
 }
 namespace xzr::lib::test
@@ -37,13 +43,5 @@ Gen<std::string> rand_month_str()
 Gen<std::string> rand_day_str()
 {
     return map(rand_day(), [](int a) { return std::to_string(a); }).as("day_str");
-}
-Gen<std::string> rand_ymd_str()
-{
-    return ::rc::gen::apply(
-        [](const std::string& y, const std::string& m, const std::string& d) { return y + '.' + m + '.' + d; },
-        rand_year_str(),
-        rand_month_str(),
-        rand_day_str());
 }
 }

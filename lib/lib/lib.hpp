@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include <string_view>
 
 namespace xzr::lib
 {
@@ -20,13 +19,19 @@ struct ymd
 };
 bool operator==(const ymd& a, const ymd& b) noexcept;
 bool operator!=(const ymd& a, const ymd& b) noexcept;
+struct ymd_str
+{
+    std::string s;
+};
+bool operator==(const ymd_str& a, const ymd_str& b) noexcept;
+bool operator!=(const ymd_str& a, const ymd_str& b) noexcept;
 /// \brief converts a \ref ymd type to string.
 ///
 /// \snippet lib/lib.test.cpp ymd_str_conv
-std::string to_str(const ymd& a);
+ymd_str to_str(const ymd& a);
 /// \brief converts string to a \ref ymd type.
 ///
 /// \snippet lib/lib.test.cpp ymd_str_conv
-ymd from_str(const std::string_view s);
+ymd from_str(const ymd_str& s);
 }
 }

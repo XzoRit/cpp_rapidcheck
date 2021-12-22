@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <charconv>
 #include <string>
+#include <string_view>
 #include <utility>
 
 using ::boost::pfr::eq_fields;
@@ -26,22 +27,31 @@ bool operator!=(const ymd& a, const ymd& b) noexcept
 {
     return !(a == b);
 }
-std::string to_str(const ymd& a)
+bool operator==(const ymd_str& a, const ymd_str& b) noexcept
 {
-    return std::to_string(a.y) + '.' + std::to_string(a.m) + '.' + std::to_string(a.d);
+    return eq_fields(a, b);
 }
-ymd from_str(const std::string_view s)
+bool operator!=(const ymd_str& a, const ymd_str& b) noexcept
 {
-    const auto sep_y{std::find(s.cbegin(), s.cend(), '.')};
+    return !(a == b);
+}
+ymd_str to_str(const ymd& a)
+{
+    return {std::to_string(a.y) + '.' + std::to_string(a.m) + '.' + std::to_string(a.d)};
+}
+ymd from_str(const ymd_str& ymd)
+{
+    std::string_view sv{ymd.s};
+    const auto sep_y{std::find(sv.cbegin(), sv.cend(), '.')};
     int y{};
-    std::from_chars(s.cbegin(), sep_y, y);
+    std::from_chars(sv.data(), sep_y, y);
 
-    const auto sep_m{std::find(sep_y + 1, s.cend(), '.')};
+    const auto sep_m{std::find(sep_y + 1, sv.cend(), '.')};
     int m{};
     std::from_chars(sep_y + 1, sep_m, m);
 
     int d{};
-    std::from_chars(sep_m + 1, s.cend(), d);
+    std::from_chars(sep_m + 1, sv.cend(), d);
 
     return {y, m, d};
 }

@@ -9,7 +9,8 @@
 
 using ::rc::check;
 using ::xzr::lib::add;
-using ::xzr::lib::test::rand_ymd_str;
+using ::xzr::lib::ymd;
+using ::xzr::lib::ymd_str;
 
 namespace po = boost::program_options;
 
@@ -29,7 +30,13 @@ int main(int ac, char* av[])
         if (vm.count("help"))
         {
             std::cout << desc << "\n";
+            return 0;
         }
+
+        check("rand_ymd", [](const ymd& a) { RC_TAG(a); });
+        check("rand_ymd_str", [](const ymd_str& a) { RC_TAG(a); });
+
+        return add(0, 0);
     }
     catch (const std::exception& e)
     {
@@ -39,9 +46,6 @@ int main(int ac, char* av[])
     catch (...)
     {
         std::cerr << "Exception of unknown type!\n";
+        return 2;
     }
-
-    check("rand_ymd_str", []() { RC_TAG(*rand_ymd_str()); });
-
-    return add(0, 0);
 }

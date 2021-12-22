@@ -14,7 +14,7 @@ using ::xzr::lib::add;
 using ::xzr::lib::from_str;
 using ::xzr::lib::to_str;
 using ::xzr::lib::ymd;
-using ::xzr::lib::test::rand_ymd_str;
+using ::xzr::lib::ymd_str;
 
 namespace
 {
@@ -47,10 +47,9 @@ RC_BOOST_PROP(ymd_from_string, (ymd rand_ymd))
     //! [ymd_str_conv]
 }
 
-RC_BOOST_PROP(ymd_to_string, ())
+RC_BOOST_PROP(ymd_to_string, (ymd_str rand_ymd_str))
 {
-    const std::string s{*rand_ymd_str()};
-    RC_ASSERT(s == to_str(from_str(s)));
+    RC_ASSERT(rand_ymd_str == to_str(from_str(rand_ymd_str)));
 }
 
 BOOST_AUTO_TEST_SUITE_END()
