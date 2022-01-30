@@ -29,9 +29,10 @@ struct Arbitrary<::xzr::lib::ymd>
 {
     static Gen<::xzr::lib::ymd> arbitrary()
     {
-        return ::rc::gen::construct<::xzr::lib::ymd>(::xzr::lib::test::rand_year(),
-                                                     ::xzr::lib::test::rand_month(),
-                                                     ::xzr::lib::test::rand_day());
+        return ::rc::gen::construct<::xzr::lib::ymd>(
+            ::xzr::lib::test::rand_year(),
+            ::xzr::lib::test::rand_month(),
+            ::xzr::lib::test::rand_day());
     }
 };
 template <>
@@ -39,11 +40,11 @@ struct Arbitrary<::xzr::lib::ymd_str>
 {
     static Gen<::xzr::lib::ymd_str> arbitrary()
     {
-        return ::rc::gen::construct<::xzr::lib::ymd_str>(
-            ::rc::gen::apply([](auto&& y, auto&& m, auto&& d) { return y + '.' + m + '.' + d; },
-                             ::xzr::lib::test::rand_year_str(),
-                             ::xzr::lib::test::rand_month_str(),
-                             ::xzr::lib::test::rand_day_str()));
+        return ::rc::gen::construct<::xzr::lib::ymd_str>(::rc::gen::apply(
+            [](auto&& y, auto&& m, auto&& d) { return y + '.' + m + '.' + d; },
+            ::xzr::lib::test::rand_year_str(),
+            ::xzr::lib::test::rand_month_str(),
+            ::xzr::lib::test::rand_day_str()));
     }
 };
 }

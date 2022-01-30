@@ -37,7 +37,8 @@ bool operator!=(const ymd_str& a, const ymd_str& b) noexcept
 }
 ymd_str to_str(const ymd& a)
 {
-    return {std::to_string(a.y) + '.' + std::to_string(a.m) + '.' + std::to_string(a.d)};
+    return {std::to_string(a.y) + '.' + std::to_string(a.m) + '.' +
+            std::to_string(a.d)};
 }
 ymd from_str(const ymd_str& ymd)
 {

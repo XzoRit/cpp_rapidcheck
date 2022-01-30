@@ -38,10 +38,12 @@ Gen<std::string> rand_year_str()
 }
 Gen<std::string> rand_month_str()
 {
-    return map(rand_month(), [](int a) { return std::to_string(a); }).as("month_str");
+    return map(rand_month(), [](int a) { return std::to_string(a); })
+        .as("month_str");
 }
 Gen<std::string> rand_day_str()
 {
-    return map(rand_day(), [](int a) { return std::to_string(a); }).as("day_str");
+    return map(rand_day(), [](int a) { return std::to_string(a); })
+        .as("day_str");
 }
 }
